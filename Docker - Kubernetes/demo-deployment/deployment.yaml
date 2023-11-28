@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 3 # tells deployment to run 2 pods matching the template
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: registry.isitech.tancou.fr/tancrede/custom-nginx:latest
+        ports:
+          - containerPort: 80
+        # volumeMounts:
+        #  - name: volweb
+        #    mountPath: /usr/share/nginx/html
+      #volumes:
+      #- name: volweb
+      #  persistentVolumeClaim:
+      #    claimName: codercestfun-pvc
+      imagePullSecrets:
+      - name: my-secret-name
