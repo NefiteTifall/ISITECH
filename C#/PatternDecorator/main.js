@@ -22,7 +22,7 @@ const sequelize = require("./sequelize");
 				displayname: "Nicolas G.",
 			}
 		});
-		Log.info("User", user.getDataValue("displayname"));
+		Log.info("User", user.update("displayname"));
 	} catch (error) {
 		Log.error("Unable to connect to the database:", error);
 	}
